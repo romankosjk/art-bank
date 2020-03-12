@@ -1,0 +1,47 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col">
+      <div class="table-responsive">
+        <table class="table table-striped home-table">
+          <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col" *ngFor="let name of thName">{{name.name | lowercase}}</th>
+            <th scope="col">Edit</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <th scope="row"></th>
+            <td scope="col" *ngFor="let name of thName">
+              <input *ngIf="name.name !== 'BIRTHDATE'"class="form-control form-control-sm" type="text" [(ngModel)]="newPerson[name.name]">
+              <input *ngIf="name.name === 'BIRTHDATE'"class="form-control form-control-sm" type="date" [(ngModel)]="newPerson[name.name]">
+            </td>
+            <td>
+              <button type="button" class="btn btn-success btn-sm w-100" (click)="addMethod()">Add</button>
+            </td>
+          </tr>
+          <tr [ngClass]="{show: row === enableEditIndex}" *ngFor="let items of personData; let row = index">
+            <th scope="row">{{row + 1}}</th>
+            <td *ngFor="let item of thName; let i = index">
+              <div [ngClass]="{'text-center': item.name === 'FIRSTNAME' || 'LASTNAME'}" >
+                <span class="small" *ngIf="item.name !== 'BIRTHDATE'">{{items[item.name]}}</span>
+                <span class="small" *ngIf="item.name === 'BIRTHDATE'">{{items[item.name] | date}}</span>
+                <input *ngIf="item.name !== 'BIRTHDATE'" class="form-control form-control-sm d-none" type="text" [(ngModel)]="items[item.name]">
+                <input *ngIf="item.name === 'BIRTHDATE'" class="form-control form-control-sm d-none" type="date" [(ngModel)]="items[item.name]">
+              </div>
+            </td>
+            <td>
+              <button *ngIf="!enableEdit" (click)="enableEditMethod(row)" type="button" class="btn btn-primary btn-sm w-100 mb-1">Edit</button>
+              <button *ngIf="enableEdit && enableEditIndex == row"  type="button" class="btn btn-primary btn-sm w-100 mb-1" (click)="saveSegment()">Save</button>
+              <button type="button" class="btn btn-secondary btn-sm w-100" (click)="deleteMethod(row)">Delete</button>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+

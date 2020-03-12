@@ -1,1 +1,31 @@
 /* You can add global styles to this file, and also import other style files */
+.show span {
+  display: none;
+}
+.show input {
+  display: block!important;
+}
+.home-table  td:hover span{
+  font-weight: bold;
+}
+.card-table .card-item {
+  min-width: 100%;
+  flex: 0 0 100%;
+  padding: 0 5px;
+  margin: 0 0 10px;
+}
+.card-table .card-item:nth-child(3n+3) {
+  min-width: 100%;
+  flex: 0 0 100%;
+}
+
+@media (min-width: 768px) {
+  .card-table .card-item {
+    min-width: 30%;
+    flex: 0 0 30%;
+  }
+  .card-table .card-item:nth-child(3n+3) {
+    min-width: 40%;
+    flex: 0 0 40%;
+  }
+}

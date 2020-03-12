@@ -1,0 +1,21 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <div class="d-flex flex-wrap card-table">
+        <div class="card-item" *ngFor="let items of personData; let row = index">
+          <div class="card alert-primary" >
+            <div class="card-body">
+              <div *ngFor="let item of thName; let i = index">
+                <p>
+                  <span class="small" *ngIf="item.name !== 'BIRTHDATE'">{{items[item.name]}}</span>
+                  <span class="small" *ngIf="item.name === 'BIRTHDATE'">{{items[item.name] | date}}</span>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
